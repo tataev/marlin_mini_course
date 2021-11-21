@@ -64,10 +64,9 @@ session_start();
                                             <label class="form-label" for="simpleinput">Email</label>
                                             <input type="text" name="email" id="simpleinput" class="form-control">
                                         </div>
-
                                         <label class="form-label" for="simpleinput">Password</label>
-                                        <input type="password" name="password" id="simpleinput" class="form-control">
-                                        <button class="btn btn-success mt-3">Submit</button>
+                                        <input type="password" id="simpleinput" class="form-control" name="password">
+                                        <button class="btn btn-success mt-3  type="submit"">Submit</button>
                                     </form>
                                 </div>
                             </div>

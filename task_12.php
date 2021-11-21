@@ -1,3 +1,9 @@
+<?php
+include 'functions.php';
+session_start();
+//var_dump($_SESSION);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,24 +40,28 @@
                         <div class="panel-content">
                             <div class="panel-content">
                                 <div class="form-group">
-                                    <div class="alert alert-info fade show" role="alert">
-                                        Ваше сообщение выводится тут
-                                    </div>
-                                    <form action="">
-                                        <div class="form-group">
-                                        	<label class="form-label" for="simpleinput">Text</label>
-                                            <input type="text" id="simpleinput" class="form-control">
+<!--                                                     alert-info-->
+                                    <?php if (isset($_SESSION['info'])): ?>
+                                        <div class="alert alert-info fade show" role="alert">
+                                            <?php
+                                            echo $_SESSION['info'];
+                                            ?>
                                         </div>
-                                        <button class="btn btn-success mt-3">Submit</button>
+                                    <?php endif; ?>
+                                    <form action="task_12_handler.php" method="post">
+                                        <div class="form-group">
+                                            <label class="form-label" for="simpleinput">Text</label>
+                                            <input type="text" id="simpleinput" class="form-control" name="text">
+                                        </div>
+                                        <button class="btn btn-success mt-3" type="submit">Submit</button>
                                     </form>
-                                </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </main>
-        
 
         <script src="js/vendors.bundle.js"></script>
         <script src="js/app.bundle.js"></script>
