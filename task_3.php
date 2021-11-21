@@ -1,3 +1,7 @@
+<?php
+include 'functions.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,12 +23,11 @@
     </head>
     <body class="mod-bg-1 mod-nav-link ">
         <main id="js-page-content" role="main" class="page-content">
-
             <div class="col-md-6">
                 <div id="panel-1" class="panel">
                     <div class="panel-hdr">
                         <h2>
-                            Задание
+                            Задание 03
                         </h2>
                         <div class="panel-toolbar">
                             <button class="btn btn-panel waves-effect waves-themed" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
@@ -33,33 +36,18 @@
                     </div>
                     <div class="panel-container show">
                         <div class="panel-content">
-                            <div class="panel-content">
-                                <div class="bg-warning-100 border border-warning rounded">
-                                    <div class="input-group p-2 mb-0">
-                                        <input type="text" class="form-control form-control-lg shadow-inset-2 bg-warning-50 border-warning" id="js-list-msg-filter" placeholder="Filter list">
-                                        <div class="input-group-append">
-                                            <div class="input-group-text bg-warning-500 border-warning">
-                                                <i class="fal fa-search fs-xl"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <ul id="js-list-msg" class="list-group px-2 pb-2 js-list-filter">
-                                        <li class="list-group-item">
-                                            <span data-filter-tags="reports file">Reports</span>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <span data-filter-tags="analytics graphs">Analytics</span>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <span data-filter-tags="export download">Export</span>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <span data-filter-tags="storage">Storage</span>
-                                        </li>
-                                    </ul>
-                                    <div class="filter-message js-filter-message mt-0 fs-sm"></div>
-                                </div>
-                            </div>
+                            <ol class="breadcrumb page-breadcrumb">
+                                <?php foreach($itemsTsk03 as $item):?>
+                                    <?php if($item['is_link']):?>
+                                        <li class="breadcrumb-item"><a href="<?php echo $item['href']; ?>"><?php echo $item['title']; ?></a></li>
+                                    <?php else: ?>
+                                        <li class="breadcrumb-item active"><?php echo $item['title']; ?></li>
+                                    <?php endif ?>
+                                <?php endforeach; ?>
+<!--                                <li class="breadcrumb-item"><a href="#">Главная</a></li>-->
+<!--                                <li class="breadcrumb-item"><a href="#">PHP</a></li>-->
+<!--                                <li class="breadcrumb-item active">Функции</li>-->
+                            </ol>
                         </div>
                     </div>
                 </div>

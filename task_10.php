@@ -1,3 +1,9 @@
+<?php
+include 'functions.php';
+session_start();
+//var_dump($_SESSION);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,12 +25,11 @@
     </head>
     <body class="mod-bg-1 mod-nav-link ">
         <main id="js-page-content" role="main" class="page-content">
-
             <div class="col-md-6">
                 <div id="panel-1" class="panel">
                     <div class="panel-hdr">
                         <h2>
-                            Задание 09
+                            Задание 10
                         </h2>
                         <div class="panel-toolbar">
                             <button class="btn btn-panel waves-effect waves-themed" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
@@ -32,13 +37,21 @@
                         </div>
                     </div>
                     <div class="panel-container show">
+
                         <div class="panel-content">
                             <div class="panel-content">
                                 <div class="form-group">
-                                    <form action="">
+<!--                                    только если в сессии есть message будем работать -->
+                                    <?php if (isset($_SESSION['danger'])): ?>
+                                    <div class="alert alert-danger fade show" role="alert">
+                                        <?php echo $_SESSION['danger']; unset($_SESSION['danger'])?>
+<!--                                        Введённая запись уже присутствует в таблице.-->
+                                    </div>
+                                    <?php endif;  ?>
+                                    <form action="task_10_save.php" method="post">
                                         <label class="form-label" for="simpleinput">Text</label>
-                                        <input type="text" id="simpleinput" class="form-control">
-                                        <button class="btn btn-success mt-3">Submit</button>
+                                        <input type="text" id="simpleinput" class="form-control" name="text">
+                                        <button class="btn btn-success mt-3 type="submit">Submit</button>
                                     </form>
                                 </div>
                             </div>
