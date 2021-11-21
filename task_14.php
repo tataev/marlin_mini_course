@@ -40,19 +40,35 @@ session_start();
                 <div class="panel-content">
                     <div class="panel-content">
                         <div class="form-group">
-                            <div class="alert alert-danger fade show" role="alert">
-                                Неверный логин или пароль
-                            </div>
-                            <form action="">
+                            <?php if (isset($_SESSION['danger'])): ?>
+                                <div class="alert alert-danger fade show" role="alert">
+                                    <?php
+                                    echo $_SESSION['danger']; unset($_SESSION['danger']);
+                                    ?>
+                                </div>
+                            <?php endif; ?>
+                            <form action="task_14_handler.php" method="post">
                                 <div class="form-group">
                                     <label class="form-label" for="simpleinput">Email</label>
-                                    <input type="text" id="simpleinput" class="form-control">
+                                    <input type="text" name="email" id="simpleinput" class="form-control">
                                 </div>
-
                                 <label class="form-label" for="simpleinput">Password</label>
-                                <input type="password" id="simpleinput" class="form-control">
-                                <button class="btn btn-success mt-3">Submit</button>
+                                <input type="password" id="simpleinput" class="form-control" name="password">
+                                <button class="btn btn-success mt-3" type="submit">Submit</button>
                             </form>
+<!--                            <div class="alert alert-danger fade show" role="alert">-->
+<!--                                Неверный логин или пароль-->
+<!--                            </div>-->
+<!--                            <form action="">-->
+<!--                                <div class="form-group">-->
+<!--                                    <label class="form-label" for="simpleinput">Email</label>-->
+<!--                                    <input type="text" id="simpleinput" class="form-control">-->
+<!--                                </div>-->
+<!---->
+<!--                                <label class="form-label" for="simpleinput">Password</label>-->
+<!--                                <input type="password" id="simpleinput" class="form-control">-->
+<!--                                <button class="btn btn-success mt-3">Submit</button>-->
+<!--                            </form>-->
                         </div>
                     </div>
                 </div>
@@ -60,7 +76,6 @@ session_start();
         </div>
     </div>
 </main>
-
 
 <script src="js/vendors.bundle.js"></script>
 <script src="js/app.bundle.js"></script>
@@ -72,4 +87,25 @@ session_start();
 </script>
 </body>
 </html>
-<?php
+
+<!--
+Напишите простенькую авторизацию.
+Подумайте, как можно выполнить проверку. А проверки у нас такие:
+1. Есть ли вообще такой человек с этим эл адресом.
+Если нет, то выводим сообщение: Неверный логин или пароль.
+2. Если есть, то подходит ли пароль.
+Так как у нас хранится хэш, нам нужно проверить введенный пароль относительного этого хеша.
+Для этого используйте функцию password_verify($password, $hash)
+Только после этого, как удостоверимся что такой пользователь имеется,
+и его пароль введен верно, мы можем авторизовать пользователя. То есть,
+записать данные пользователя в сессию.
+Логин пользователя, это запись его данных в сессию, чтобы они были доступны на всех страница сайта.
+Не пытайтесь сразу проверять пару эл адреса и пароля
+(SELECT * FROM users WHERE email=$email AND password=$password).
+Это не сработает, ведь введеный пароль и хэш — две разные строки,
+даже если пароль будет правильный.
+Задание должно быть выполенено с использованием отдельного файла — обработчика формы.
+Назовите файл task_14_handler.php
+Для выполнения задания, скачайте файл верстки по ссылке ниже.
+Далее добавьте его в папку со стилями и картинками которые у вас уже есть
+ -->
