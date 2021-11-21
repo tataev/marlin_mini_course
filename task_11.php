@@ -41,17 +41,33 @@ session_start();
                         <div class="panel-content">
                             <div class="panel-content">
                                 <div class="form-group">
-<!--                                    только если в сессии есть message будем работать -->
                                     <?php if (isset($_SESSION['danger'])): ?>
-                                    <div class="alert alert-danger fade show" role="alert">
-                                        <?php echo $_SESSION['danger']; unset($_SESSION['danger'])?>
-<!--                                        Этот эл адрес уже занят другим пользователем -->
-                                    </div>
-                                    <?php endif;  ?>
-                                    <form action="task_11_save.php" method="post">
-                                        <label class="form-label" for="simpleinput">Text</label>
-                                        <input type="text" id="simpleinput" class="form-control" name="text">
-                                        <button class="btn btn-success mt-3 type="submit">Submit</button>
+                                        <div class="alert alert-danger fade show" role="alert">
+                                            <?php
+                                            echo $_SESSION['danger'];
+                                            unset($_SESSION['danger']);
+                                            ?>
+                                        </div>
+                                    <?php endif; ?>
+
+                                    <?php if (isset($_SESSION['success'])): ?>
+                                        <div class="alert alert-success fade show" role="alert">
+                                            <?php
+                                            echo $_SESSION['success'];
+                                            unset($_SESSION['success']);
+                                            ?>
+                                        </div>
+                                    <?php endif; ?>
+
+                                    <form action="task_11_handler.php" method="post">
+                                        <div class="form-group">
+                                            <label class="form-label" for="simpleinput">Email</label>
+                                            <input type="text" name="email" id="simpleinput" class="form-control">
+                                        </div>
+
+                                        <label class="form-label" for="simpleinput">Password</label>
+                                        <input type="password" name="password" id="simpleinput" class="form-control">
+                                        <button class="btn btn-success mt-3">Submit</button>
                                     </form>
                                 </div>
                             </div>
