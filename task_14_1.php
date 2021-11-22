@@ -41,9 +41,9 @@ session_start();
                     <div class="panel-content">
                         <div class="form-group">
                             <div class="alert alert-success fade show" role="alert">
-                                Здравствуйте, ИМЯ_ПОЛЬЗОВАТЕЛЯ.
+                                Здравствуйте, <?php echo $_SESSION['success']; ?>
                             </div>
-                            <a href="#" class="btn btn-info">Выйти</a>
+                            <a href="task_14_1_handler.php" class="btn btn-info" type="submit">Выйти</a>
                         </div>
                     </div>
                 </div>
