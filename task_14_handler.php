@@ -15,7 +15,7 @@ if (!empty($task)) {
     if (password_verify($password, $hash)) {
         $message = 'Пользователь '.$email.' успешно активирован с помощью пароля '.$password. '<br> Ваш hash '.$hash;
     } else {
-        $message = 'Неверный логин или пароль. Ваш hash '.$verify;
+        $message = 'Неверный логин или пароль. Ваш hash '.$hash;
     }
     $_SESSION['danger'] = $message;
     header('Location: task_14.php');
