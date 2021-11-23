@@ -19,14 +19,19 @@ USE `my_project`;
 -- Дамп структуры для таблица my_project.images
 CREATE TABLE IF NOT EXISTS `images` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `text` varchar(255) DEFAULT '0',
   `image` varchar(255) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='MarlinDev mini course';
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8 COMMENT='MarlinDev mini course';
 
--- Дамп данных таблицы my_project.images: ~0 rows (приблизительно)
+-- Дамп данных таблицы my_project.images: ~5 rows (приблизительно)
 /*!40000 ALTER TABLE `images` DISABLE KEYS */;
-REPLACE INTO `images` (`id`, `image`) VALUES
-	(1, '/img/uploads/1.png');
+REPLACE INTO `images` (`id`, `text`, `image`) VALUES
+	(1, '0', '1.jpg'),
+	(2, '0', '2.jpg'),
+	(3, '0', '3.jpg'),
+	(38, ' 123', 'delme.jpg'),
+	(39, ' 123', 'delme.jpg');
 /*!40000 ALTER TABLE `images` ENABLE KEYS */;
 
 -- Дамп структуры для таблица my_project.my_registration
