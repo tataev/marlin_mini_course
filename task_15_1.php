@@ -24,7 +24,7 @@
             <div id="panel-1" class="panel">
                 <div class="panel-hdr">
                     <h2>
-                        Задание
+                        Задание 15_1
                     </h2>
                     <div class="panel-toolbar">
                         <button class="btn btn-panel waves-effect waves-themed" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
@@ -98,3 +98,12 @@
 </script>
 </body>
 </html>
+
+<!--
+ Дополнение к предыдущему заданию. Напишите функционал удаления картинок.
+ Чтобы при нажатии на кнопку удалить, удалялась картинка как с сервера, так и с базы.
+Задание должно быть выполенено с использованием отдельного файла — обработчика формы.
+Назовите файл task_15_1_handler.php
+Для выполнения задания, скачайте файл верстки по ссылке ниже.
+Далее добавьте его в папку со стилями и картинками которые у вас уже есть
+ -->

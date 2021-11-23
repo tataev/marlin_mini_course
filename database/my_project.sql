@@ -16,13 +16,26 @@
 CREATE DATABASE IF NOT EXISTS `my_project` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `my_project`;
 
+-- Дамп структуры для таблица my_project.images
+CREATE TABLE IF NOT EXISTS `images` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `image` varchar(255) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='MarlinDev mini course';
+
+-- Дамп данных таблицы my_project.images: ~0 rows (приблизительно)
+/*!40000 ALTER TABLE `images` DISABLE KEYS */;
+REPLACE INTO `images` (`id`, `image`) VALUES
+	(1, '/img/uploads/1.png');
+/*!40000 ALTER TABLE `images` ENABLE KEYS */;
+
 -- Дамп структуры для таблица my_project.my_registration
 CREATE TABLE IF NOT EXISTS `my_registration` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
 -- Дамп данных таблицы my_project.my_registration: ~4 rows (приблизительно)
 /*!40000 ALTER TABLE `my_registration` DISABLE KEYS */;
@@ -38,9 +51,9 @@ CREATE TABLE IF NOT EXISTS `my_table` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `text` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы my_project.my_table: ~5 rows (приблизительно)
+-- Дамп данных таблицы my_project.my_table: ~6 rows (приблизительно)
 /*!40000 ALTER TABLE `my_table` DISABLE KEYS */;
 REPLACE INTO `my_table` (`id`, `text`) VALUES
 	(1, 'Lorem ipsum'),
