@@ -50,7 +50,7 @@ session_start();
                                         <p><textarea placeholder="Введите заметку для фотографии" class="insrt-field text" name="text"> </textarea></p>
                                         <label class="form-label" for="simpleinput">Image</label>
                                         <p>Прикрепить картинку</p>
-                                        <p><input type="file" id="simpleinput" class="form-control" name="pics"></p>
+                                        <p><input type="file" id="simpleinput" class="form-control" name="file_img"></p>
                                     </div>
                                     <button class="btn btn-success mt-3" type="submit" name="send">Submit</button>
                                 </form>
@@ -76,34 +76,22 @@ session_start();
                     <div class="panel-content">
                         <div class="panel-content image-gallery">
                             <div class="row">
-                                <?php
-                                $pdo = new PDO("mysql:host=localhost;dbname=my_project;", "root", "");
+                                <div class="row">
+                                    <?php
+                                    $pdo = new PDO("mysql:host=localhost;dbname=my_project;", "root", "");
 
-                                $sql = "SELECT * FROM images";
-                                $statement  = $pdo->prepare($sql);
-                                $statement ->execute();
-                                $task = $statement ->fetchAll(PDO::FETCH_ASSOC);
+                                    $sql = "SELECT * FROM images";
+                                    $statement  = $pdo->prepare($sql);
+                                    $statement ->execute();
+                                    $task = $statement ->fetchAll(PDO::FETCH_ASSOC);
 
-                                foreach ($task as $img) { ?>
-                                    <div class="col-md-3 image">
-                                        <img src="img/uploads/<?=$img['image']?>" width="100%">
-                                        <a class="btn btn-danger" onclick="confirm('Вы уверены?');" href="delete.php?id=<?= $task['id'];?>"">Удалить</a>
-                                    </div>
-                                <?php }?>
+                                    foreach ($task as $img) { ?>
+                                        <div class="col-md-3 image">
+                                            <img src="img/uploads/<?=$img['image']?>" width="100%">
+                                            <a class="btn btn-danger" onclick="confirm('Вы уверены?');" href="task_15_handler.php?id=<?= $task['id'];?>"">Удалить</a>
+                                        </div>
+                                    <?php }?>
                             </div>
-<!--                                <div class="col-md-3 image">-->
-<!--                                    <img src="img/demo/gallery/1.jpg">-->
-<!--                                    <a class="btn btn-danger" href="#" onclick="confirm('Вы уверены?');">Удалить</a>-->
-<!--                                </div>-->
-<!--                                <div class="col-md-3">-->
-<!--                                    <img src="img/demo/gallery/2.jpg">-->
-<!--                                    <a class="btn btn-danger" onclick="confirm('Вы уверены?');" href="#">Удалить</a>-->
-<!--                                </div>-->
-<!--                                <div class="col-md-3">-->
-<!--                                    <img src="img/demo/gallery/3.jpg">-->
-<!--                                    <a class="btn btn-danger" onclick="confirm('Вы уверены?');" href="#">Удалить</a>-->
-<!--                                </div>-->
-<!--                            </div> -->
                         </div>
                     </div>
                 </div>
