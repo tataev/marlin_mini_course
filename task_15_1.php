@@ -1,3 +1,10 @@
+<?php
+//include 'functions.php';
+//include 'task_15_handler_1.php';
+session_start();
+//var_dump($_SESSION);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,7 +31,7 @@
             <div id="panel-1" class="panel">
                 <div class="panel-hdr">
                     <h2>
-                        Задание 15_1
+                        Задание 15.1
                     </h2>
                     <div class="panel-toolbar">
                         <button class="btn btn-panel waves-effect waves-themed" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
@@ -35,12 +42,17 @@
                     <div class="panel-content">
                         <div class="panel-content">
                             <div class="form-group">
-                                <form action="">
+
+                                <form action="task_15_handler.php" class="form-art" method="post" enctype="multipart/form-data">
+
                                     <div class="form-group">
+                                        <p>Введите заметку для фотографии</p>
+                                        <p><textarea placeholder="Введите заметку для фотографии" class="insrt-field text" name="text"> </textarea></p>
                                         <label class="form-label" for="simpleinput">Image</label>
-                                        <input type="file" id="simpleinput" class="form-control">
+                                        <p>Прикрепить картинку</p>
+                                        <p><input type="file" id="simpleinput" class="form-control" name="file_img"></p>
                                     </div>
-                                    <button class="btn btn-success mt-3">Submit</button>
+                                    <button class="btn btn-success mt-3" type="submit" name="send">Submit</button>
                                 </form>
                             </div>
                         </div>
@@ -64,17 +76,21 @@
                     <div class="panel-content">
                         <div class="panel-content image-gallery">
                             <div class="row">
-                                <div class="col-md-3 image">
-                                    <img src="img/demo/gallery/1.jpg">
-                                    <a class="btn btn-danger" href="#" onclick="confirm('Вы уверены?');">Удалить</a>
-                                </div>
-                                <div class="col-md-3">
-                                    <img src="img/demo/gallery/2.jpg">
-                                    <a class="btn btn-danger" onclick="confirm('Вы уверены?');" href="#">Удалить</a>
-                                </div>
-                                <div class="col-md-3">
-                                    <img src="img/demo/gallery/3.jpg">
-                                    <a class="btn btn-danger" onclick="confirm('Вы уверены?');" href="#">Удалить</a>
+                                <div class="row">
+                                    <?php
+                                    $pdo = new PDO("mysql:host=localhost;dbname=my_project;", "root", "");
+                                    $sql = "SELECT * FROM images";
+                                    $statement  = $pdo->prepare($sql);
+                                    $statement ->execute();
+                                    $task = $statement ->fetchAll(PDO::FETCH_ASSOC);
+
+                                    foreach ($task as $img) { ?>
+                                        <div class="col-md-3 image">
+                                            <img src="img/uploads/<?=$img['image']?>" width="100%">
+                                            <p class="text-center"><?=$img['text']?></p>
+                                            <a class="btn btn-danger" href="task_15_1_handler.php?id=<?=$img['id'];?>" onclick="confirm('Вы уверены?');">Удалить</a>
+                                        </div>
+                                    <?php }?>
                                 </div>
                             </div>
                         </div>
@@ -82,7 +98,6 @@
                 </div>
             </div>
         </div>
-    </div>
 
 
 </main>
@@ -99,11 +114,16 @@
 </body>
 </html>
 
+
 <!--
- Дополнение к предыдущему заданию. Напишите функционал удаления картинок.
- Чтобы при нажатии на кнопку удалить, удалялась картинка как с сервера, так и с базы.
-Задание должно быть выполенено с использованием отдельного файла — обработчика формы.
-Назовите файл task_15_1_handler.php
+Напишите скрипт загрузки файлов и их вывода.
+После загрузки картинки, пользователь должен быть возвращен назад(на страницу формы)
+и загруженные картинки должны быть выведены в блоке справа.
+Для этого используйте таблицу images, такой структуры: id(int), image(varchar255)
+Название картинок должно быть уникальным.
+Даже если загрузить картинку с одинаковым названием, никаких ошибок и проблем происходить не должно.
+Ведь название картинки загруженной с таким же именем уже нет. Оно уникально.
+Задание должно быть выполнено с использованием отдельного файла — обработчика формы. Назовите файл task_15_handler.php
 Для выполнения задания, скачайте файл верстки по ссылке ниже.
 Далее добавьте его в папку со стилями и картинками которые у вас уже есть
  -->

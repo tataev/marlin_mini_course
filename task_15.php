@@ -88,6 +88,7 @@ session_start();
                                     foreach ($task as $img) { ?>
                                         <div class="col-md-3 image">
                                             <img src="img/uploads/<?=$img['image']?>" width="100%">
+                                            <p class="text-center"><?=$img['text']?></p>
                                             <a class="btn btn-danger" onclick="confirm('Вы уверены?');" href="task_15_handler.php?id=<?= $task['id'];?>"">Удалить</a>
                                         </div>
                                     <?php }?>
