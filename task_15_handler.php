@@ -99,7 +99,7 @@ if(isset($_POST['send'])) {
     $task = move_uploaded_file($file_img_tmp_name, $file_dir_rand_name);
 }
     if ($task) {
-        header('Location: task_15.php');
+        header('Location: task_15_1.php');
     }
 
 ?>
