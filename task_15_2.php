@@ -1,3 +1,9 @@
+<?php
+//include 'functions.php';
+session_start();
+//var_dump($_SESSION);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,7 +30,7 @@
             <div id="panel-1" class="panel">
                 <div class="panel-hdr">
                     <h2>
-                        Задание 15_2
+                        Задание 15.2
                     </h2>
                     <div class="panel-toolbar">
                         <button class="btn btn-panel waves-effect waves-themed" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
@@ -35,12 +41,17 @@
                     <div class="panel-content">
                         <div class="panel-content">
                             <div class="form-group">
-                                <form action="">
+
+                                <form action="task_15_handler.php" class="form-art" method="post" enctype="multipart/form-data">
+
                                     <div class="form-group">
+                                        <p>Введите заметку для фотографии</p>
+                                        <p><textarea placeholder="Введите заметку для фотографии" class="insrt-field text" name="text"> </textarea></p>
                                         <label class="form-label" for="simpleinput">Image</label>
-                                        <input type="file" id="simpleinput" class="form-control">
+                                        <p>Прикрепить картинку</p>
+                                        <p><input type="file" id="simpleinput" class="form-control" name="file_img"></p>
                                     </div>
-                                    <button class="btn btn-success mt-3">Submit</button>
+                                    <button class="btn btn-success mt-3" type="submit" name="send">Submit</button>
                                 </form>
                             </div>
                         </div>
@@ -64,16 +75,21 @@
                     <div class="panel-content">
                         <div class="panel-content image-gallery">
                             <div class="row">
-                                <div class="col-md-3 image">
-                                    <img src="img/demo/gallery/1.jpg">
-                                </div>
+                                <div class="row">
+                                    <?php
+                                    $pdo = new PDO("mysql:host=localhost;dbname=my_project;", "root", "");
+                                    $sql = "SELECT * FROM images";
+                                    $statement  = $pdo->prepare($sql);
+                                    $statement ->execute();
+                                    $task = $statement ->fetchAll(PDO::FETCH_ASSOC);
 
-                                <div class="col-md-3 image">
-                                    <img src="img/demo/gallery/2.jpg">
-                                </div>
-
-                                <div class="col-md-3 image">
-                                    <img src="img/demo/gallery/3.jpg">
+                                    foreach ($task as $img) { ?>
+                                        <div class="col-md-3 image">
+                                            <img src="img/uploads/<?=$img['image']?>" width="100%">
+                                            <p class="text-center"><?=$img['text']?></p>
+                                            <a class="btn btn-danger" href="task_15_1_handler.php?id=<?=$img['id'];?>" onclick="confirm('Вы уверены?');">Удалить</a>
+                                        </div>
+                                    <?php }?>
                                 </div>
                             </div>
                         </div>
@@ -81,7 +97,6 @@
                 </div>
             </div>
         </div>
-    </div>
 
 
 </main>
@@ -97,9 +112,11 @@
 </script>
 </body>
 </html>
+
 <!--
- Дополнение к заданию 15. Напишите функционал массовой загрузки картинок.
- Условия те же: база и уникальное название картинок.
+Задание 15_2
+Дополнение к заданию 15. Напишите функционал массовой загрузки картинок.
+Условия те же: база и уникальное название картинок.
 Примечание: нужно использовать уже готовую функцию для загрузки единичной картинки.
 И использовать ее здесь.
 Задание должно быть выполенено с использованием отдельного файла — обработчика формы.
